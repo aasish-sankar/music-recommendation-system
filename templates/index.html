@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Recommendation System</title>
+    <link
+      rel="stylesheet"
+      <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="{{ url_for('static', filename='js/script.js') }}"
+      defer
+    ></script>
+  </head>
+  <body>
+    <h1>Music Recommendation System</h1>
+    <div id="song-info"></div>
+    <button id="like-button">Like</button>
+    <button id="dislike-button">Dislike</button>
+    <button id="next-song-button">Next Song</button>
+    <button id="stop-recommendation-button">Stop Recommendation</button>
+
+    <div id="results" style="display: none">
+      <h2>Recommendation Results</h2>
+      <p id="total-likes"></p>
+      <p id="favorite-composer"></p>
+      <div id="additional-songs"></div>
+    </div>
+  </body>
+</html>

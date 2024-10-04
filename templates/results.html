@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recommendation Results</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Recommendation Results</h1>
+    <div id="results">
+      <p>
+        Total liked songs: {{ total_likes }} out of {{ recommendation_count }}
+      </p>
+      <p>Favorite Composer: {{ favorite_composer or 'None' }}</p>
+
+      <h3>Additional Songs by {{ favorite_composer }}</h3>
+      <ul>
+        {% for song in additional_songs %}
+        <li>
+          {{ song.song_title }} from {{ song.movie_name_tamil }} ({{ song.year
+          }})
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <a href="/" class="btn">Start Over</a>
+  </body>
+</html>
