@@ -1,61 +1,75 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+/* Global Styles */
+
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-.container {
-  max-width: 600px;
-  margin: 50px auto;
-  background-color: #fff;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333; /* Changed text color to dark gray */
+  background-color: #000; /* Black background color */
 }
 
-h1 {
-  text-align: center;
-  color: #333;
-}
-
-.song-info {
-  margin-bottom: 20px;
-}
-
-.song-info h2 {
-  color: #ff6347;
-}
-
-.buttons {
+h1,
+h2 {
   text-align: center;
   margin-bottom: 20px;
+  color: #fff; /* White text color for headings */
 }
 
 button {
   padding: 10px 20px;
-  margin: 10px;
   border: none;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
   border-radius: 5px;
-  font-size: 16px;
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #3e8e41;
 }
 
-#results h2 {
-  color: #333;
+.button-container {
+  text-align: center; /* Centered buttons */
+  margin: 20px 0; /* Added margin to buttons for spacing */
 }
 
-#results ul {
-  list-style-type: none;
+.button-container button {
+  margin: 10px; /* Added margin to buttons for spacing */
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #333; /* Changed background color to dark gray */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #fff; /* White text color for container */
+}
+
+#song-info,
+#movie-actors,
+#singers,
+#music-by {
+  text-align: center; /* Centered song info, movie actors, singers, and music by */
+}
+
+ul {
+  list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-#results li {
-  padding: 5px 0;
-  color: #555;
+li {
+  margin-bottom: 10px;
+}
+
+li p {
+  margin-bottom: 0;
 }
