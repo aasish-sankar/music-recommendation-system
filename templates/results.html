@@ -3,30 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recommendation Results</title>
+    <title>Music Recommendation System</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
   </head>
   <body>
-    <h1>Recommendation Results</h1>
-    <div id="results">
-      <p>
-        Total liked songs: {{ total_likes }} out of {{ recommendation_count }}
-      </p>
-      <p>Favorite Composer: {{ favorite_composer or 'None' }}</p>
-
-      <h3>Additional Songs by {{ favorite_composer }}</h3>
+    <div class="container">
+      <h1>Recommendation Results</h1>
+      <p>Total likes: {{ total_likes }}</p>
+      <p>Favorite composer: {{ favorite_composer }}</p>
+      <h2>Additional songs by {{ favorite_composer }}</h2>
       <ul>
         {% for song in additional_songs %}
         <li>
-          {{ song.song_title }} from {{ song.movie_name_tamil }} ({{ song.year
-          }})
+          <p>{{ song.title }}</p>
         </li>
         {% endfor %}
       </ul>
     </div>
-    <a href="/" class="btn">Start Over</a>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </body>
 </html>

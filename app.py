@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request, redirect, url_for
+from flask import Flask, jsonify, render_template, request
 from bandit_agent import BanditAgent
 from music_data import MusicData
 import logging
@@ -54,27 +54,23 @@ def send_feedback():
 def stop_recommendations():
     global total_likes, recommendation_count
 
-    # Get favorite composer and additional songs
     favorite_composer = bandit_agent.get_favorite_composer()
     if favorite_composer:
         additional_songs = bandit_agent.recommend_additional_songs(favorite_composer, 10)
     else:
         additional_songs = []
 
-    # Prepare data for the results page
-    result_data = {
+    response_data = {
         'total_likes': total_likes,
         'recommendation_count': recommendation_count,
         'favorite_composer': favorite_composer,
         'additional_songs': additional_songs
     }
 
-    # Reset state for future sessions
     total_likes = 0
     recommendation_count = 0
 
-    # Render results.html with the data
-    return render_template('results.html', result_data=result_data)
+    return jsonify(response_data)
 
 if __name__ == "__main__":
     app.run(debug=True)
