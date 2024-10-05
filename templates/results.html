@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Music Recommendation System</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}"
-    />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Recommendation Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
     <div class="container">
-      <h1>Recommendation Results</h1>
-      <p>Total likes: {{ total_likes }}</p>
-      <p>Favorite composer: {{ favorite_composer }}</p>
-      <h2>Additional songs by {{ favorite_composer }}</h2>
-      <ul>
-        {% for song in additional_songs %}
-        <li>
-          <p>{{ song.title }}</p>
-        </li>
-        {% endfor %}
-      </ul>
+        <h1>Recommendation Results</h1>
+        
+        <div class="results-summary">
+            <p>Total liked songs: {{ total_likes }} out of {{ recommendation_count }}</p>
+            <p>Favorite Composer: {{ favorite_composer }}</p>
+        </div>
+
+        <div class="additional-songs">
+            <h2>Additional Songs by {{ favorite_composer }}</h2>
+            <ul>
+                {% for song in additional_songs %}
+                    <li>
+                        <p><strong>{{ song['song_title'] }}</strong> from <em>{{ song['movie_name_tamil'] }}</em> ({{ song['year'] }})</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="navigation-buttons">
+            <a href="{{ url_for('index') }}" class="button">Go to Home</a>
+            <a href="{{ url_for('start_recommendation') }}" class="button">Start New Recommendation</a>
+        </div>
     </div>
+
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-  </body>
+</body>
 </html>

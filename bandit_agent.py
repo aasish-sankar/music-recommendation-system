@@ -8,7 +8,7 @@ class BanditAgent:
         self.epsilon = epsilon  # Exploration rate
         self.song_indices = list(self.song_data.index)  # Track song indices
         self.song_rewards = [0] * len(self.song_indices)  # Store rewards for each song
-        self.recommendations = []  # Keep track of recommended songs
+        self.recommendations = set()  # Keep track of recommended songs as a set to avoid repetition
         self.composer_likes = defaultdict(int)  # Track likes for each composer
         self.penalized_composers = defaultdict(int)  # Track penalized composers
 
@@ -25,7 +25,9 @@ class BanditAgent:
             # Exploit the best song based on rewards minus penalties
             song_index = max(available_songs, key=lambda i: self.song_rewards[i] - self.penalized_composers[self.song_data.loc[i]['song_music']])
 
-        self.recommendations.append(song_index)
+        # Add the recommended song to the recommendations set
+        self.recommendations.add(song_index)
+
         logging.info(f"Song index {song_index} recommended.")
         return song_index, self.song_data.loc[song_index]
 

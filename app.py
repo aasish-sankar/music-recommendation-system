@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, redirect, url_for
 from bandit_agent import BanditAgent
 from music_data import MusicData
 import logging
@@ -20,7 +20,13 @@ recommendation_count = 0
 
 @app.route('/')
 def index():
+    """Render introduction page."""
     return render_template('index.html')
+
+@app.route('/start-recommendation')
+def start_recommendation():
+    """Render recommendation page."""
+    return render_template('recommendation.html')
 
 @app.route('/get-next-song', methods=['GET'])
 def get_next_song():
@@ -52,9 +58,15 @@ def send_feedback():
 
 @app.route('/stop-recommendations', methods=['POST'])
 def stop_recommendations():
-    global total_likes, recommendation_count
+    """Handle end of recommendation session and redirect to results page."""
+    return redirect(url_for('results'))
 
+@app.route('/results')
+def results():
+    """Render the results page with favorite composer and additional song recommendations."""
+    global total_likes, recommendation_count
     favorite_composer = bandit_agent.get_favorite_composer()
+
     if favorite_composer:
         additional_songs = bandit_agent.recommend_additional_songs(favorite_composer, 10)
     else:
@@ -67,10 +79,10 @@ def stop_recommendations():
         'additional_songs': additional_songs
     }
 
-    total_likes = 0
-    recommendation_count = 0
+    total_likes = 0  # Reset for next session
+    recommendation_count = 0  # Reset for next session
 
-    return jsonify(response_data)
+    return render_template('results.html', **response_data)
 
 if __name__ == "__main__":
     app.run(debug=True)

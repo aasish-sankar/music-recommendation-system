@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Recommendation System</title>
+    
+    <!-- Link to Bootstrap for button styling -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Link to custom CSS file -->
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <!-- jQuery and custom JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/script.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-center">Tamil Music Recommendation System</h1>
+
+        <!-- Spinner for loading -->
+        <div id="spinner" class="text-center" style="display:none;">
+            <img src="/static/images/spinner.gif" alt="Loading..." />
+        </div>
+
+        <!-- Section to display song details -->
+        <div id="song-info" class="mt-4 text-center">
+            <!-- Song details will be dynamically inserted here -->
+        </div>
+
+        <!-- Buttons for user feedback -->
+        <div class="buttons text-center mt-4">
+            <button id="like-button" class="btn btn-success" disabled>Like</button>
+            <button id="dislike-button" class="btn btn-danger" disabled>Dislike</button>
+            <button id="next-song-button" class="btn btn-primary" disabled>Next Song</button>
+        </div>
+
+        <!-- Stop recommendation button wrapped in a form to submit to the server -->
+        <div class="button-container text-center mt-4">
+            <form action="/stop-recommendations" method="POST">
+                <button type="submit" id="stop-recommendation-button" class="btn btn-secondary">Stop Recommendation</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
